@@ -1,0 +1,84 @@
+﻿@model IEnumerable<Clinic_Appointment_System.Models.Appointment>
+@{
+    ViewData["Title"] = "Patient Appointment History";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var patient = ViewBag.Patient as Clinic_Appointment_System.Models.Patient;
+}
+
+@section Styles {
+    <style>
+        .table-container {
+            background: linear-gradient(135deg, #ffffff, #dbeafe);
+            border: 2px solid #93c5fd;
+            border-radius: 1rem;
+            box-shadow: 0 8px 16px -2px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+        }
+
+            .table-container table {
+                background-color: #ffffff;
+                border-radius: 0.75rem;
+                overflow: hidden;
+            }
+
+            .table-container th {
+                background-color: #1e3a8a;
+                color: #ffffff;
+                padding: 1rem;
+                font-weight: 600;
+            }
+
+            .table-container td {
+                padding: 1rem;
+                color: #1e3a8a;
+            }
+
+            .table-container tr:hover {
+                background-color: #eff6ff;
+            }
+
+        .btn-secondary {
+            background-color: #6b7280;
+            color: #ffffff;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            transition: background-color 0.2s ease, transform 0.2s ease;
+        }
+
+            .btn-secondary:hover {
+                background-color: #4b5563;
+                transform: translateY(-2px);
+            }
+    </style>
+}
+
+<h1 class="text-4xl font-extrabold text-blue-900 mb-6 tracking-tight shadow-sm">Appointment History for @patient.Name</h1>
+
+<div class="table-container">
+    <table class="min-w-full">
+        <thead>
+            <tr>
+                <th class="text-left">Doctor</th>
+                <th class="text-left">Date & Time</th>
+                <th class="text-left">Status</th>
+                <th class="text-left">Notes</th>
+                <th class="text-left">Prescription</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr class="border-b">
+                    <td>@Html.DisplayFor(modelItem => item.Doctor.Name)</td>
+                    <td>@Html.DisplayFor(modelItem => item.AppointmentDateTime)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Status)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Notes)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Prescription)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<div class="mt-6">
+    <a asp-controller="Patients" asp-action="Index" class="btn-secondary">Back to Patients</a>
+</div>

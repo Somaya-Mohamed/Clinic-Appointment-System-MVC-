@@ -1,0 +1,75 @@
+﻿@model Clinic_Appointment_System.Models.Doctor
+@{
+    ViewData["Title"] = "Doctor Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Styles {
+    <style>
+        .details-container {
+            background: linear-gradient(135deg, #ffffff, #dbeafe);
+            border: 2px solid #93c5fd;
+            border-radius: 1rem;
+            padding: 2.5rem;
+            box-shadow: 0 8px 16px -2px rgba(0, 0, 0, 0.1);
+        }
+
+            .details-container dt {
+                color: #1e40af;
+                font-weight: 600;
+                font-size: 1.125rem;
+            }
+
+            .details-container dd {
+                color: #1e3a8a;
+                font-size: 1rem;
+                margin-bottom: 1.5rem;
+            }
+
+        .btn-warning {
+            background-color: #f59e0b;  
+            color: #ffffff;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            transition: background-color 0.2s ease, transform 0.2s ease;
+        }
+
+            .btn-warning:hover {
+                background-color: #d97706; 
+                transform: translateY(-2px);
+            }
+
+        .btn-secondary {
+            background-color: #6b7280;
+            color: #ffffff;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            transition: background-color 0.2s ease, transform 0.2s ease;
+        }
+
+            .btn-secondary:hover {
+                background-color: #4b5563;
+                transform: translateY(-2px);
+            }
+
+    </style>
+}
+
+<h1 class="text-4xl font-extrabold text-blue-900 mb-6 tracking-tight shadow-sm">Doctor Details</h1>
+
+<div class="details-container">
+    <h4 class="text-2xl font-semibold text-blue-900 mb-4">Doctor</h4>
+    <hr class="border-gray-300 mb-4">
+    <dl>
+        <dt>Name</dt>
+        <dd>@Html.DisplayFor(model => model.Name)</dd>
+        <dt>Specialization</dt>
+        <dd>@Html.DisplayFor(model => model.Specialization)</dd>
+        <dt>Phone</dt>
+        <dd>@Html.DisplayFor(model => model.Phone)</dd>
+    </dl>
+    <div class="flex space-x-4 mt-6">
+        <a asp-action="Edit" asp-route-id="@Model.DoctorId" class="btn-warning">Edit</a>
+        <a asp-action="Index" class="btn-secondary">Back</a>
+    </div>
+</div>

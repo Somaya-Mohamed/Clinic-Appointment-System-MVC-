@@ -1,0 +1,120 @@
+﻿@model IEnumerable<Clinic_Appointment_System.Models.Appointment>
+@{
+    ViewData["Title"] = "Appointments";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Styles {
+    <style>
+        .btn-create {
+            background-color: #1d4ed8;
+            color: #ffffff;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            transition: background-color 0.2s ease, transform 0.2s ease;
+        }
+
+            .btn-create:hover {
+                background-color: #1e3a8a;
+                transform: translateY(-2px);
+            }
+
+        .table-container {
+            background: linear-gradient(135deg, #ffffff, #dbeafe);
+            border: 2px solid #93c5fd;
+            border-radius: 1rem;
+            box-shadow: 0 8px 16px -2px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+        }
+
+            .table-container table {
+                background-color: #ffffff;
+                border-radius: 0.75rem;
+                overflow: hidden;
+            }
+
+            .table-container th {
+                background-color: #1e3a8a;
+                color: #ffffff;
+                padding: 1rem;
+                font-weight: 600;
+            }
+
+            .table-container td {
+                padding: 1rem;
+                color: #1e3a8a;
+            }
+
+            .table-container tr:hover {
+                background-color: #eff6ff;
+            }
+
+        .btn-action {
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            transition: background-color 0.2s ease, transform 0.2s ease;
+            font-size: 0.875rem;
+        }
+
+        .btn-edit {
+            background-color: #f59e0b;
+            color: #ffffff;
+        }
+
+            .btn-edit:hover {
+                background-color: #d97706;
+                transform: translateY(-2px);
+            }
+
+        .btn-delete {
+            background-color: #dc2626;
+            color: #ffffff;
+        }
+
+            .btn-delete:hover {
+                background-color: #b91c1c;
+                transform: translateY(-2px);
+            }
+
+        .action-icon {
+            font-size: 1.2rem;  
+            margin-right: 0.75rem; 
+            transition: color 0.2s ease;
+        }
+    </style>
+}
+
+<h1 class="text-4xl font-extrabold text-blue-900 mb-6 tracking-tight shadow-sm">Appointments</h1>
+<a asp-action="Create" class="btn-create mb-6 inline-block">Create New</a>
+
+<div class="table-container">
+    <table class="min-w-full">
+        <thead>
+            <tr>
+                <th class="text-left">Date</th>
+                <th class="text-left">Patient</th>
+                <th class="text-left">Doctor</th>
+                <th class="text-left">Notes</th>
+                <th class="text-left">Prescription</th>
+                <th class="text-left">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var appointment in Model)
+            {
+                <tr class="border-b">
+                    <td>@appointment.AppointmentDateTime</td>
+                    <td>@appointment.Patient.Name</td>
+                    <td>@appointment.Doctor.Name</td>
+                    <td>@appointment.Notes</td>
+                    <td>@appointment.Prescription</td>
+                    <td>
+                        <a asp-action="Details" asp-route-id="@appointment.AppointmentId" title="View Details"><i class="fas fa-eye text-blue-600 hover:text-blue-800 action-icon"></i></a>
+                        <a asp-action="Edit" asp-route-id="@appointment.AppointmentId" title="Edit"><i class="fas fa-edit text-yellow-600 hover:text-yellow-800 action-icon"></i></a>
+                        <a asp-action="Delete" asp-route-id="@appointment.AppointmentId" title="Delete"><i class="fas fa-trash text-red-600 hover:text-red-800 action-icon"></i></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

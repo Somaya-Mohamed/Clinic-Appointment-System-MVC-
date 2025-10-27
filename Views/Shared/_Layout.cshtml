@@ -1,0 +1,84 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Clinic Assistant</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    @RenderSection("Styles", false)
+</head>
+<body class="flex bg-gray-100">
+    <style>
+        body {
+            font-size: 1.1rem;
+            font-weight: 500; 
+            color: #1e3a8a; 
+        }
+
+        table td, table th {
+            font-size: 1.1rem;
+            font-weight: 500; 
+        }
+
+        dt, dd {
+            font-size: 1.1rem; 
+            font-weight: 500;
+        }
+
+        input, select, textarea {
+            font-size: 1.1rem; 
+            font-weight: 500;
+        }
+    </style>
+    
+    <!-- Sidebar -->
+    <aside class="w-64 bg-gray-900 text-gray-200 min-h-screen">
+        <div class="p-6 border-b border-gray-700">
+            <div class="flex items-center space-x-3">
+                <img src="data:image/jpeg;base64,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"
+                     alt="Admin"
+                     class="w-12 h-12 rounded-full border-2 border-gray-600">
+                <div>
+                    <h2 class="font-semibold text-lg">Clinic Admin</h2>
+                    <p class="text-sm text-gray-400">admin@clinic.com</p>
+                </div>
+            </div>
+        </div>
+        <nav class="p-4 space-y-2">
+            <a asp-controller="Home" asp-action="Index" class="flex items-center space-x-3 p-2 rounded-lg hover:bg-gray-800">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+                </svg>
+                <span>Dashboard</span>
+            </a>
+            <a asp-controller="Doctors" asp-action="Index" class="flex items-center space-x-3 p-2 rounded-lg hover:bg-gray-800">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z" />
+                </svg>
+                <span>Doctors</span>
+            </a>
+            <a asp-controller="Patients" asp-action="Index" class="flex items-center space-x-3 p-2 rounded-lg hover:bg-gray-800">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" />
+                </svg>
+                <span>Patients</span>
+            </a>
+            <a asp-controller="Appointments" asp-action="Index" class="flex items-center space-x-3 p-2 rounded-lg hover:bg-gray-800">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5m-9-6h.008v.008H12v-.008zM12 15h.008v.008H12V15zm0 2.25h.008v.008H12v-.008zM9.75 15h.008v.008H9.75V15zm0 2.25h.008v.008H9.75v-.008zM7.5 15h.008v.008H7.5V15zm0 2.25h.008v.008H7.5v-.008zm6.75-4.5h.008v.008h-.008v-.008zm0 2.25h.008v.008h-.008V15zm0 2.25h.008v.008h-.008v-.008zm2.25-4.5h.008v.008H16.5v-.008zm0 2.25h.008v.008H16.5V15z" />
+                </svg>
+                <span>Appointments</span>
+            </a>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 p-10">
+        @RenderBody()
+    </main>
+    @RenderSection("Scripts", false)
+</body>
+</html>
+

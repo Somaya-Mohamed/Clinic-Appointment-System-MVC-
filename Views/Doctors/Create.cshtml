@@ -1,0 +1,129 @@
+﻿@model Clinic_Appointment_System.Models.Doctor
+@{
+    ViewData["Title"] = "Create Doctor";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Styles {
+    <style>
+        .form-container {
+            background: linear-gradient(135deg, #ffffff, #dbeafe); /* نفس تدرج الـ Dashboard */
+            border: 2px solid #93c5fd;
+            border-radius: 1rem;
+            padding: 2.5rem;
+            box-shadow: 0 8px 16px -2px rgba(0, 0, 0, 0.1);
+        }
+
+            .form-container label {
+                color: #1e40af;
+                font-weight: 600;
+                font-size: 1.125rem;
+            }
+
+            .form-container input {
+                background-color: #ffffff;
+                border: 1px solid #93c5fd;
+                border-radius: 0.5rem;
+                padding: 0.75rem;
+                color: #1e3a8a;
+                width: 100%;
+            }
+
+                .form-container input:focus {
+                    outline: none;
+                    border-color: #1d4ed8;
+                    box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.2);
+                }
+
+        .error-message {
+            background-color: #fef2f2;
+            color: #dc2626;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-primary {
+            background-color: #111827;
+            color: #ffffff;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            transition: background-color 0.2s ease, transform 0.2s ease;
+            font-size: 1.125rem;
+        }
+
+            .btn-primary:hover {
+                background-color: #1e3a8a;
+                transform: translateY(-2px);
+                color: #ffffff;
+            }
+
+        .btn-secondary {
+            background-color: #6b7280; /* رمادي متناسق */
+            color: #ffffff;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            transition: background-color 0.2s ease, transform 0.2s ease;
+        }
+
+            .btn-secondary:hover {
+                background-color: #4b5563;
+                transform: translateY(-2px);
+            }
+    </style>
+}
+
+<h1 class="text-4xl font-extrabold text-blue-900 mb-6 tracking-tight shadow-sm">Create Doctor</h1>
+
+@if (!ViewData.ModelState.IsValid)
+{
+    <div class="error-message">
+        <ul>
+            @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+            {
+                <li>@error.ErrorMessage</li>
+            }
+        </ul>
+    </div>
+}
+
+<div class="form-container">
+    <form asp-action="Create" asp-controller="Doctors" method="post" id="doctorCreateForm">
+        @Html.AntiForgeryToken()
+
+        <div asp-validation-summary="ModelOnly" class="text-red-600 mb-4"></div>
+        <div class="mb-4">
+            <label asp-for="Name" class="block mb-1"></label>
+            <input asp-for="Name" class="w-full" />
+            <span asp-validation-for="Name" class="text-red-600 text-sm"></span>
+        </div>
+        <div class="mb-4">
+            <label asp-for="Specialization" class="block mb-1"></label>
+            <input asp-for="Specialization" class="w-full" />
+            <span asp-validation-for="Specialization" class="text-red-600 text-sm"></span>
+        </div>
+        <div class="mb-4">
+            <label asp-for="Phone" class="block mb-1"></label>
+            <input asp-for="Phone" class="w-full" />
+            <span asp-validation-for="Phone" class="text-red-600 text-sm"></span>
+        </div>
+        <div class="flex space-x-4 mt-6">
+            <input type="submit" value="Create" class="btn-primary" />
+            <a asp-action="Index" asp-controller="Doctors" class="btn-secondary">Back</a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#doctorCreateForm").on("submit", function (e) {
+                console.log("Doctor Create Form submitted with values: " + $(this).serialize());
+            });
+        });
+    </script>
+}
