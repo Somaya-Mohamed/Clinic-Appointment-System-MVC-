@@ -17,7 +17,7 @@ Visual Studio 2022 or later (or any IDE that supports .NET)
 Setup Instructions
 
 Clone the repository:
-git clone https://github.com/your-repo/ClinicAssistant.git
+git clone [https://github.com/your-repo/ClinicAssistant.git](https://github.com/Somaya-Mohamed/Clinic-Appointment-System)
 cd ClinicAssistant
 
 
